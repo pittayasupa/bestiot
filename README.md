@@ -64,7 +64,7 @@ void setup()
 ```c++
 void Loop()
 {
-  unsigned long currentMillis = millis(); // millis() maximun about 4,294,967,295 or 49 days overflow reset
+  unsigned long currentMillis = millis(); // millis() maximum about 4,294,967,295 or 49 days overflow reset
   if (abs(currentMillis - previousMillis) >= interval) // take abs
   { 
     previousMillis = currentMillis;   
