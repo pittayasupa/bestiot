@@ -33,12 +33,15 @@
 
 # Example Code
 
+```
 #include "NB_BC95_G.h"
 NB_BC95_G AISnb;
 
 const long interval = 10000;  //millisecond
 unsigned long previousMillis = 0;
+```
 
+```
 void setup()
 {
   AISnb.debug = true;
@@ -56,7 +59,9 @@ void setup()
   nb_resp_t res_DeviceIP = AISnb.getDeviceIP();  
   nb_resp_t res_testPing = AISnb.testPing(serverIP);
 }
+```
 
+```
 void Loop()
 {
   unsigned long currentMillis = millis(); // millis() maximun about 4,294,967,295 or 49 days overflow reset
@@ -76,3 +81,4 @@ void Loop()
     Serial.println(getResponse);
   }
 }
+```
