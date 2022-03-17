@@ -1,128 +1,21 @@
-# bestiot
-# AIS NB-IoT Library
-AIS NB-IoT Library is designed for DEVIO NB-SHIELD I to connect with your own IoT Platform/ Server. 
-The library is using Software Serial for communication with Arduino board.
-# BC95-G Libary
-# Example
-Serial port COM3 opened
-Serial port buadrate: 115200
+# Best IoT
+# Work AIS NB-IoT with ESP32 and LPWA BC95-G NB-IoT Module
+  Hi Welcome this example library for ESP32 and BC95-G  
 
-=================================
-### Set Begin NB_BC95_G library v1.0 ###
-Waiting for AIS NB test status!
-Send Command: AT
-Received Command: 
-OK
-
-AIS NB OK!
-=================================
-Send Command: AT+CGSN=1
-Received Command: 
-+CGSN:867724031411710
-
-OK
-
-=================================
-Send Command: AT+NCCID
-Received Command: 
-+NCCID:8966031840041733227
-
-OK
-
-=================================
-Send Command: AT+CGMR
-Received Command: 
-SSB,V150R100C10B200SP1
-
-SECURITY_A,V150R100C20B300SP5
-
-PROTOCOL_A,V150R100C20B300SP5
-
-APPLICATION_A,V150R100C20B300SP5
-
-SECURITY_B,V150R100C20B300SP5
-
-RADIO,Hi2115_RF0
-
-OK
-
-attachNB
-=================================
-Send Command: AT+CGATT?
-Received Command: 
-+CGATT:1
-
-OK
-
-=================================
-Send Command: AT+NSOCR=DGRAM,17,19956,1
-Received Command: 
-ERROR
-
-=================================
-Send Command: AT+CGPADDR
-Received Command: 
-+CGPADDR:0,10.14.13.64
-OK
-
-=================================
-Send Command: AT+NPING=147.50.151.130
-Received Command: 
-OK
-
-attachNB
-=================================
-Send Command: AT+CGATT?
-Received Command: 
-+CGATT:1
-
-OK
-
-=================================
-Send Command: AT+NSOST=1,147.50.151.130,19956,40,7B22546E223A2238393636303331383430303431373333323237222C2274656D70223A33342E337D
-
-1,40
-
-OK
-
-Send Command: AT+NSORF=1,100
-Received Command: 
-OK
-
-Send Command: AT+NSORF=1,100
-Received Command: 
-OK
-
-Send Command: AT+NSORF=1,100
-Received Command: 
-OK
-
-attachNB
-=================================
-Send Command: AT+CGATT?
-Received Command: 
-+CGATT:1
-
-OK
-
-=================================
-Send Command: AT+NSOST=1,147.50.151.130,19956,40,7B22546E223A2238393636303331383430303431373333323237222C2274656D70223A33342E337D
-
-1,40
-
-OK
-
-Send Command: AT+NSORF=1,100
-Received Command: 
-OK
-
-Send Command: AT+NSORF=1,100
-Received Command: 
-OK
-
-Send Command: AT+NSORF=1,100
-Received Command: 
-+NPINGERR:1
-
-OK
-
+# Quectel BC95-G-GBC68 AT Command Manual v1.5
+  you can download manual At command here: https://www.quectel.com/download/quectel_bc95-gbc68_at_commands_manual_v1-5
+  
+# For Example
+  1. include library NB_BC95_G.h
+  2. create class AISnb from NB_BC95_G
+  3. set up your monitor serial port any buatrate
+  4. set AISnb.begin(buadrate, parity, rx_pin, tx_pin) 
+     - buadrate 9600
+     - parity bit SERIAL_8N1 mean 8 data bits and 1 stop bit, see more: https://www.arduino.cc/reference/en/language/functions/communication/serial/begin/
+     - rx pin mean receiver pin from BC95-G Module
+     - tx pin mean transmission pin to BC95-G Module
+  5. test Command if you can use serial port
+  6. set up device and create UDP socket from serverPort parameter
+  7. get device ip for checking network
+  8. test server ip for comunicate with server ip
+ 
