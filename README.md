@@ -19,3 +19,14 @@
   7. get device ip for checking network
   8. test server ip for comunicate with server ip
  
+# NB type
+  1. nb_resp_t is type of structure for get response status, command response(temp) 
+  2. nb_split_t is type of structure for split command response than easy to use
+  3. nb_socket_t is type of structure for remember socket create 
+
+# NB function recommend
+  1. sendCommand your can send command for test AT Command
+  2. subFromData for get command result response 
+  3. spiteFromData for split command result easy to use
+  4. str2HexStr when you want to send message to any socket you can convert text string to hex string
+  5. hex2Str when you received message from socket you can convert hex string to string by ascii code
