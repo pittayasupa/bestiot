@@ -30,3 +30,49 @@
   3. spiteFromData for split command result easy to use
   4. str2HexStr when you want to send message to any socket you can convert text string to hex string
   5. hex2Str when you received message from socket you can convert hex string to string by ascii code
+
+# Example Code
+
+#include "NB_BC95_G.h"
+NB_BC95_G AISnb;
+
+const long interval = 10000;  //millisecond
+unsigned long previousMillis = 0;
+
+void setup()
+{
+  AISnb.debug = true;
+  AISnb.delayAfterCommand = 1000;
+  AISnb.begin(9600, SERIAL_8N1, SERIAL_RX_PIN, SERIAL_TX_PIN);
+  Serial.println("Waiting for AIS NB test status!");
+  while(!AISnb.testCommand().status)
+  {
+    Serial.print('.');
+  }
+  Serial.println("AIS NB OK!"); 
+  delay(1000);
+  previousMillis = millis(); 
+  AISnb.setupDevice("enter your port");  
+  nb_resp_t res_DeviceIP = AISnb.getDeviceIP();  
+  nb_resp_t res_testPing = AISnb.testPing(serverIP);
+}
+
+void Loop()
+{
+  unsigned long currentMillis = millis(); // millis() maximun about 4,294,967,295 or 49 days overflow reset
+  if (abs(currentMillis - previousMillis) >= interval) // take abs
+  { 
+    previousMillis = currentMillis;   
+    //try send UPD message to server
+    nb_resp_t res_send = AISnb.sendUDPMessage(socketId, "enter server ip", "enter server port", length, message, MODE_STRING_HEX);
+    if(!res_send.status) // if command response ERROR than create socket
+    {
+      AISnb.createUDPSocket(serverPort); 
+    }
+  }
+  String getResponse = AISnb.getSocketResponse();
+  if(getResponse.length() > 0){
+    Serial.print("UDP response: ");
+    Serial.println(getResponse);
+  }
+}
