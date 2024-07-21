@@ -78,8 +78,11 @@ unsigned long previousMillis = 0;
 ```
 
 **Include the Library:** NB_BC95_G.h is included to provide necessary functions and definitions for the NB-IoT module.
+
 **Create AISnb Instance:** An instance of the NB_BC95_G class is created to interact with the NB-IoT module.
+
 **Set Interval:** A constant interval of 10,000 milliseconds (10 seconds) is defined for timing operations.
+
 **Previous Milliseconds:** A variable to store the last time a message was sent is initialized.
 
 ### Setup Function
@@ -108,11 +111,17 @@ void setup()
 ```
 
 **Enable Debug Mode:** Sets debug to true to enable debugging output.
+
 **Set Command Delay:** Configures a delay of 1 second after each command.
+
 **Initialize NB-IoT Module:** Calls begin to initialize the module with a baud rate of 9600 and appropriate serial settings.
+
 **Wait for Initialization:** Continuously checks the module's status using testCommand and prints dots until the module is ready.
+
 **Confirm Initialization:** Prints "AIS NB OK!" upon successful initialization.
+
 **Delay and Timing:** Adds a 1-second delay and initializes the previousMillis variable.
+
 **Setup Device:** Configures the device with the specified port and retrieves the device IP and ping response.
 
 ### Loop Function
@@ -147,8 +156,13 @@ void Loop()
 ```
 
 **Get Current Time:** Retrieves the current time in milliseconds using millis().
+
 **Check Interval:** Compares the current time with the previousMillis to see if the defined interval has passed.
+
 **Update Timing:** Updates **previousMillis** to the current time.
+
 **Send UDP Message:** Attempts to send a UDP message to the specified server IP and port.
+
 **Handle Errors:** If the send command fails, it creates a new UDP socket.
+
 **Get Socket Response:** Retrieves any response from the socket and prints it to the serial monitor if available.
